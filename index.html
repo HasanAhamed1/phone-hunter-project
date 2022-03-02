@@ -10,14 +10,18 @@
 <body>
     <!-- Start Header -->
     <header>
-        <h1 class="text-center text-4xl font-bold mt-12 mb-5">Search Your Phone!</h1>
-        <div class="flex justify-center mb-12">
-        <input class="border-2 mr-5" id="search-field" type="text"> <button class="border-2 w-24" onclick="loadPhoneDetail()">Search</button>
-        </div>
+        <h1 class="text-center text-4xl font-bold mt-12 mb-5">TECH. <span class="text-orange-500">TUBE</span></h1>
     </header>
-
+    <!--search option -->
+    <div class="flex justify-center mb-12">
+        <input class="border-2 mr-5" id="search-field" type="text"> 
+        <button class="border-2 w-24" onclick="loadPhoneDetail()">Search</button>
+    </div>
     <!-- Spinner -->
-    <div class="hidden" id="spinner">Loading...</div>
+    <div class="hidden" id="spinner"><p>Loading...</p></div>
+
+    <!--result type-->
+    <div class="flex items-center justify-center" id="not_found"><p class="text-red-500" id="error_message"></p></div>
 
     <!-- Phone More Details Part -->
     <section>
@@ -25,7 +29,7 @@
     </section>
     
     <!-- Main Part -->
-        <div id="phones" class="grid grid-cols-1 lg:grid-cols-3 justify-items-center gap-5 m-5 mx-8"></div>
+        <div id="phone_view" class="grid grid-cols-1 lg:grid-cols-3 justify-items-center gap-5 m-5 mx-8"></div>
 
     <!-- Add Java Script -->
     <script src="js/script.js"></script>
