@@ -1,19 +1,4 @@
-// const toggleSpinner = displayStyle => {
-//     document.getElementById('spinner').style.display = displayStyle;
-// }
-// const toggleSearchResult = displayStyle => {
-//     document.getElementById('phones').style.display = displayStyle;
-// }
-
-
-const loadPhoneDetail = () => {
-    const searchText = document.getElementById('search-field').value;
-    // toggleSpinner('block');
-    // toggleSearchResult('none');
-    loadPhones(searchText);
-    document.getElementById('search-field').value = '';
-}
-
+// Phone Search
 const loadPhones = searchText => {
     const url = `https://openapi.programming-hero.com/api/phones?search=${searchText}`;
     fetch(url)
@@ -21,33 +6,40 @@ const loadPhones = searchText => {
     .then(data => displayPhones(data.data))
 }
 
+const loadPhoneDetail = () => {
+    const searchText = document.getElementById('search-field').value;
+    loadPhones(searchText);
+    document.getElementById('search-field').value = '';
+
+}
+
 const displayPhones = phones => {
-    const container = document.getElementById('phone_view');
+    const container = document.getElementById('phones');
     container.textContent = '';
-    if(!phones){
+    if(phones.length == 0 ){
         const p = document.createElement('p');
-        p.innerHTML = `<p>No Result Found</p>`;
-        container.appendChild(p);
+        p.innerHTML = `<p class="text-center">Result Not Found</p>`;
+        container.appendChild(p);   
     }
     else{
         phones?.forEach(phone =>  {
-            const div = document.createElement('div');
-            
-            div.innerHTML = `
-            <div class="flex flex-col items-center border-2 p-8 bg-gray-100 shadow-lg w-80">
+        const div = document.createElement('div');
+        div.classList.add('col');
+        div.innerHTML = `
+        <div class="flex flex-col items-center border-2 p-8 bg-gray-100 shadow-lg w-80">
                 <img src="${phone.image}" alt="" srcset="">
                 <h3 class="mt-5">Name: ${phone.phone_name}</h3>
                 <h4 class="my-3">Brand Name: ${phone.brand}</h4>
-                <button class="border-2 rounded-full bg-sky-300 w-32" onclick="loadMoreDetails('${phone.slug}')">See Details</button>
+                <button class="border-2 rounded-full bg-sky-300 w-32" onclick="loadMoreDetails('${phone.slug}')"><a href="#${phone.slug}">See Details</a></button>
             </div>
         `;
-            container.appendChild(div);
+        container.appendChild(div);
         });
     }
+    
 }
 
-//loadPhones('phones');
-
+// Phone More Details
 const loadMoreDetails = id => {
     const url = `https://openapi.programming-hero.com/api/phone/${id}`;
     fetch(url)
@@ -58,26 +50,26 @@ const loadMoreDetails = id => {
 const displayMoreDetails = phoneDetails => {
     const detailsDiv = document.getElementById('phone_details');
             detailsDiv.innerHTML = `
-            <div class="border-2 p-8 bg-gray-100 shadow-lg w-auto">
+            <div class="border-2 p-8 bg-gray-100 shadow-lg">
             <div class="flex justify-center">
             <img src="${phoneDetails.image}" alt="" srcset="">
             </div>
-                    <p class="mt-5">Model: ${phoneDetails.name}</p>
-                    <p class="mt-5">Brand: ${phoneDetails.brand}</p>
-                    <p>Release Date: ${phoneDetails.releaseDate}</p>
-                    <p>Main Features:</p>
-                    <p class="mt-5">Storage: ${phoneDetails.mainFeatures.storage}</p>
-                    <p class="mt-5">Display Size: ${phoneDetails.mainFeatures.displaySize}</p>
-                    <p class="mt-5">Chipset: ${phoneDetails.mainFeatures.chipset}</p>
-                    <p class="mt-5">Memory: ${phoneDetails.mainFeatures.memory}</p>
-                    <p class="mt-5">Sensors: ${phoneDetails.mainFeatures.sensors}</p>
-                    <p>Others</p>
-                    <p class="mt-5">WLAN: ${phoneDetails.others.WLAN ? phoneDetails.others.WLAN: ''}</p>
-                    <p class="mt-5">Bluetooth: ${phoneDetails.others.Bluetooth ? phoneDetails.others.Bluetooth: ''}</p>
-                    <p class="mt-5">GPS: ${phoneDetails.others.GPS ? phoneDetails.others.GPS: ''}</p>
-                    <p class="mt-5">NFC: ${phoneDetails.others.NFC ? phoneDetails.others.NFC: ''}</p>
-                    <p class="mt-5">Radio: ${phoneDetails.others.Radio ? phoneDetails.others.Radio: ''}</p>
-                    <p class="mt-5">USB: ${phoneDetails.others.USB ? phoneDetails.others.USB: ''}</p>
+                    <p><span class="font-medium">Model:</span> ${phoneDetails.name}</p>
+                    <p><span class="font-medium">Brand:</span> ${phoneDetails.brand}</p>
+                    <p><span class="font-medium">Release Date:</span> ${phoneDetails.releaseDate}</p>
+                    <p class="font-medium text-center">Main Features</p>
+                    <p><span class="font-medium">Storage:</span> ${phoneDetails.mainFeatures.storage}</p>
+                    <p><span class="font-medium">Display Size:</span> ${phoneDetails.mainFeatures.displaySize}</p>
+                    <p><span class="font-medium">Chipset:</span> ${phoneDetails.mainFeatures.chipset}</p>
+                    <p><span class="font-medium">Memory:</span> ${phoneDetails.mainFeatures.memory}</p>
+                    <p><span class="font-medium">Sensors:</span> ${phoneDetails.mainFeatures.sensors}</p>
+                    <p class="font-medium text-center">Others</p>
+                    <p><span class="font-medium">WLAN:</span> ${phoneDetails.others.WLAN ? phoneDetails.others.WLAN: ''}</p>
+                    <p><span class="font-medium">Bluetooth:</span> ${phoneDetails.others.Bluetooth ? phoneDetails.others.Bluetooth: ''}</p>
+                    <p><span class="font-medium">GPS:</span> ${phoneDetails.others.GPS ? phoneDetails.others.GPS: ''}</p>
+                    <p><span class="font-medium">NFC:</span> ${phoneDetails.others.NFC ? phoneDetails.others.NFC: ''}</p>
+                    <p><span class="font-medium">Radio:</span> ${phoneDetails.others.Radio ? phoneDetails.others.Radio: ''}</p>
+                    <p><span class="font-medium">USB:</span> ${phoneDetails.others.USB ? phoneDetails.others.USB: ''}</p>
                 </div>
             `;
 
