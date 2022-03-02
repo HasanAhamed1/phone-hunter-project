@@ -18,7 +18,7 @@ const displayPhones = phones => {
     container.textContent = '';
     if(phones.length == 0 ){
         const p = document.createElement('p');
-        p.innerHTML = `<p class="text-center">Result Not Found</p>`;
+        p.innerHTML = `<p class="font-bold text-red-400">NO PHONE FOUND!!!!</p>`;
         container.appendChild(p);   
     }
     else{
