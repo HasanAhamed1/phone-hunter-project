@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Document</title>
+</head>
+<body>
+    <!-- Start Header -->
+    <header>
+        <h1 class="text-center text-4xl font-bold mt-12 mb-5">Search Your Phone!</h1>
+        <div class="flex justify-center mb-12">
+        <input class="border-2 mr-5" id="search-field" type="text"> <button class="border-2 w-24" onclick="loadPhoneDetail()">Search</button>
+        </div>
+    </header>
+
+    <!-- Spinner -->
+    <div class="hidden" id="spinner">Loading...</div>
+
+    <!-- Phone More Details Part -->
+    <section>
+        <div class="grid justify-items-center" id="phone_details"></div>
+    </section>
+    
+    <!-- Main Part -->
+        <div id="phones" class="grid grid-cols-1 lg:grid-cols-3 justify-items-center gap-5 m-5 mx-8"></div>
+
+    <!-- Add Java Script -->
+    <script src="/Assignment_Phone_Hunter/script.js"></script>
+</body>
+</html>
